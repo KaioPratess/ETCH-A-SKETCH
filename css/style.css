@@ -17,7 +17,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-.squares {
-  flex: 1 1 calc(100% / 5);
-}

@@ -1,25 +1,25 @@
-//     1. create div’s to fullfil a 920px container
-// 1. Set default square size
 const board = document.querySelector('.board');
-const boardWidth = board.clientWidth;
-let size = 5;
+const defaultSize = 16;
 
 function createSquare()  {
   const div = document.createElement('div'); 
-  div.style.height = 'auto';
-  div.style.minWidth = 'auto';
   div.style.border = '0.5px solid black';
   div.classList.add('squares');
+  div.style.flex = `1 1 calc(100% / ${defaultSize})`;
   board.appendChild(div);
 }
 
-let matrix = new Array(5).fill(0).map(() => new Array(5).fill(0));
 
+// Create multidimensional array
+let matrix = new Array(defaultSize).fill(0).map(() => new Array(defaultSize).fill(0));
+
+// Loops through the array
 for(let column = 0; column < matrix.length; column++) {
   for(let row = 0; row < matrix[column].length; row++) {
     createSquare();
   }
 }
+
 
 // 2. prompt the user for a square size
 // 3. Allow the user to select a color
