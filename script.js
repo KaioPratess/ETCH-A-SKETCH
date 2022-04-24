@@ -3,6 +3,7 @@ const sizeInput = document.querySelector('.square-size input');
 const sizeLabel = document.querySelector('.square-size label');
 const clearBtn = document.querySelector('.clear-btn');
 const paintColor = document.querySelector('.paint-color input');
+const randomColor = document.querySelector('.random-color input');
 
 // Set default size and display
 sizeInput.value = 16;
@@ -36,9 +37,18 @@ function createMatrix(squareSize) {
 }
 
 function paintSquare(event) {
-  let color =  `${paintColor.value}`;
-  event.target.style.backgroundColor = color;
+  if(randomColor.checked) {
+    const colorRandom = `rgb(${getRandom(0,255)},${getRandom(0,255)},${getRandom(0,255)})`;
+    event.target.style.backgroundColor = colorRandom;
+  } else {
+    const color =  `${paintColor.value}`;
+    event.target.style.backgroundColor = color;
+  }
 } 
+
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}  
 
 function paintEvent(square) {
   board.addEventListener('mousedown', (event) => {
