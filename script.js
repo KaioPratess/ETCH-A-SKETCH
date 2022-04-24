@@ -4,6 +4,8 @@ const sizeLabel = document.querySelector('.square-size label');
 const clearBtn = document.querySelector('.clear-btn');
 const paintColor = document.querySelector('.paint-color input');
 const randomColor = document.querySelector('.random-color input');
+const colorPalette = document.querySelector('.palette input');
+const eraser = document.querySelector('.eraser input');
 
 // Set default size and display
 sizeInput.value = 16;
@@ -31,16 +33,30 @@ function createMatrix(squareSize) {
     }
   };
   const square = document.querySelectorAll('.square');
-  paintEvent(square);
+  setPaintEvent(square);
   removePaintEvent(square);
   clearBoard(square);
 }
 
+let opacityLevel = 0;
+
 function paintSquare(event) {
   if(randomColor.checked) {
-    const colorRandom = `rgb(${getRandom(0,255)},${getRandom(0,255)},${getRandom(0,255)})`;
+    const colorRandom = `rgba(${getRandom(0,255)},${getRandom(0,255)},${getRandom(0,255)}, ${Math.random() * (1 - 0) + 0})`;
     event.target.style.backgroundColor = colorRandom;
-  } else {
+  } 
+  else if(eraser.checked) {
+      event.target.style.backgroundColor = 'white';
+  }
+  else {
+    if(colorPalette.checked) {
+      if(opacityLevel <= 1) {
+        opacityLevel += 0.1;
+      } else {
+        opacityLevel = 0.1;
+      }
+      event.target.style.opacity = opacityLevel;
+    }
     const color =  `${paintColor.value}`;
     event.target.style.backgroundColor = color;
   }
@@ -50,7 +66,7 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min) + min)
 }  
 
-function paintEvent(square) {
+function setPaintEvent(square) {
   board.addEventListener('mousedown', (event) => {
     paintSquare(event);
     square.forEach((item) => {
@@ -71,6 +87,7 @@ function clearBoard(square) {
   clearBtn.addEventListener('click', () => {
     square.forEach((item) => {
       item.style.backgroundColor = 'white';
+      item.style.opacity = 1;
     })
   });
 }
@@ -84,5 +101,3 @@ sizeInput.addEventListener('change', function () {
 sizeInput.addEventListener('input', () => {
   sizeLabel.textContent = `${sizeInput.value} x ${sizeInput.value}`;
 })
-
-// 3. Allow the user to select a color
