@@ -1,31 +1,48 @@
+const clearBtn = document.querySelector('.clear-btn');
 const board = document.querySelector('.board');
-const defaultSize = 16;
+const sizeInput = document.querySelector('.square-size input');
+const sizeLabel = document.querySelector('.square-size label');
 
-function createSquare()  {
+sizeInput.value = 16;
+const squareSize = +sizeInput.value;
+sizeLabel.textContent = `${sizeInput.value} x ${sizeInput.value}`;
+
+createMatrix(squareSize);
+
+
+function createSquare(squareSize)  {
   const div = document.createElement('div'); 
   div.style.border = '0.5px solid black';
-  div.style.flex = `1 1 calc(100% / ${defaultSize})`;
+  div.style.flex = `1 1 calc(100% / ${squareSize})`;
   div.classList.add('square');
   board.appendChild(div);  
 }
 
-// Create multidimensional array
-let matrix = new Array(defaultSize).fill(0).map(() => new Array(defaultSize).fill(0));
-
-// Loops through the array
-for(let column = 0; column < matrix.length; column++) {
-  for(let row = 0; row < matrix[column].length; row++) {
-    createSquare();
+function createMatrix(squareSize) {
+  board.textContent = '';
+  const matrix = new Array(squareSize).fill(0).map(() => new Array(squareSize).fill(0));
+  for(let column = 0; column < matrix.length; column++) {
+    for(let row = 0; row < matrix[column].length; row++) {
+      createSquare(squareSize);
+    }
   }
 }
 
-const square = document.querySelectorAll('.square');
+sizeInput.addEventListener('change', function () {
+  createMatrix(+this.value)
+});
+
+sizeInput.addEventListener('input', () => {
+  sizeLabel.textContent = `${sizeInput.value} x ${sizeInput.value}`;
+})
+
+const square = document.querySelectorAll('.board div');
+console.log(square)
+
 
 function paintSquare(event) {
   event.target.style.backgroundColor = 'black';
 } 
-
-// 
 
 board.addEventListener('mousedown', (event) => {
   paintSquare(event);
@@ -40,7 +57,6 @@ board.addEventListener('mouseup', () => {
   })
 });
 
-const clearBtn = document.querySelector('.clear-btn');
 
 function clearBoard() {
   square.forEach((item) => {
@@ -49,6 +65,7 @@ function clearBoard() {
 }
 
 clearBtn.addEventListener('click', clearBoard);
+
 
 
 
