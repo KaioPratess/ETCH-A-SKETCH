@@ -2,6 +2,7 @@ const board = document.querySelector('.board');
 const sizeInput = document.querySelector('.square-size input');
 const sizeLabel = document.querySelector('.square-size label');
 const clearBtn = document.querySelector('.clear-btn');
+const paintColor = document.querySelector('.paint-color input');
 
 // Set default size and display
 sizeInput.value = 16;
@@ -32,11 +33,11 @@ function createMatrix(squareSize) {
   paintEvent(square);
   removePaintEvent(square);
   clearBoard(square);
-  console.log(square)
 }
 
 function paintSquare(event) {
-  event.target.style.backgroundColor = 'black';
+  let color =  `${paintColor.value}`;
+  event.target.style.backgroundColor = color;
 } 
 
 function paintEvent(square) {
