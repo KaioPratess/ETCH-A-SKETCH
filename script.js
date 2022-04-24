@@ -25,19 +25,30 @@ function paintSquare(event) {
   event.target.style.backgroundColor = 'black';
 } 
 
-board.addEventListener('click', (event) => {
+// 
+
+board.addEventListener('mousedown', (event) => {
   paintSquare(event);
   square.forEach((item) => {
     item.addEventListener('mouseenter', paintSquare)
   });
-});
+})
 
-board.addEventListener('dblclick', (event) => {
+board.addEventListener('mouseup', () => {
   square.forEach((item) => {
     item.removeEventListener('mouseenter', paintSquare)
   })
 });
 
+const clearBtn = document.querySelector('.clear-btn');
+
+function clearBoard() {
+  square.forEach((item) => {
+    item.style.backgroundColor = 'white';
+  })
+}
+
+clearBtn.addEventListener('click', clearBoard);
 
 
 
