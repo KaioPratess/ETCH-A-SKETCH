@@ -12,29 +12,36 @@
 </head>
 
 <body>
+  <h1>Etch-A-Sketch</h1>
   <div class="container">
-    <button class="clear-btn">Clear</button>
-    <div class="square-size">
-      <input type="range" id="size" name="size" min="1" max="100">
-      <label for="size"></label>
-    </div>
-    <div class="paint-color">
-      <label for="color">Select Color</label>
-      <input type="color" id="color" name="color">
-    </div>
-    <div class="random-color">
-      <input type="checkbox" id="random-color" name="random-color">
-      <label for="random-color">Colorful</label>
-    </div>
-    <div class="palette">
-      <input type="checkbox" id="palette" name="palette">
-      <label for="palette">Palette</label>
-    </div>
-    <div class="eraser">
-      <input type="checkbox" id="eraser" name="eraser">
-      <label for="eraser">Eraser</label>
-    </div>
     <div class="board"></div>
+    <div class="controls">
+      <div class="circle"></div>
+      <div class="square-size">
+        <input type="range" id="size" name="size" min="1" max="100">
+        <label for="size"></label>
+      </div>
+      <div class="paint-color">
+        <input type="color" id="color" name="color">
+        <label for="color">Select Color</label>
+      </div>
+      <div>
+        <div class="random-color">
+          <input type="checkbox" id="random-color" name="random-color">
+          <label for="random-color">Colorful</label>
+        </div>
+        <div class="palette">
+          <input type="checkbox" id="palette" name="palette">
+          <label for="palette">Palette</label>
+        </div>
+        <div class="eraser">
+          <input type="checkbox" id="eraser" name="eraser">
+          <label for="eraser">Eraser</label>
+        </div>
+      </div>
+      <button class="clear-btn">Clear</button>
+      <div class="circle"></div>
+    </div>
   </div>
 </body>
 

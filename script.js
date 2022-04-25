@@ -17,7 +17,7 @@ createMatrix(squareSize);
 // Create a square div
 function createSquare(squareSize)  {
   const div = document.createElement('div'); 
-  div.style.border = '0.5px solid black';
+  div.style.border = '1px solid rgba(0,0,0,.1)';
   div.style.flex = `1 1 calc(100% / ${squareSize})`;
   div.classList.add('square');
   board.appendChild(div);  
@@ -92,12 +92,8 @@ function clearBoard(square) {
   });
 }
 
-// Create a matrix in every change of size by the user
-sizeInput.addEventListener('change', function () {
+// change the label text content
+sizeInput.addEventListener('input', function() {
+  sizeLabel.textContent = `${sizeInput.value} x ${sizeInput.value}`;
   createMatrix(+this.value)
 });
-
-// change the label text content
-sizeInput.addEventListener('input', () => {
-  sizeLabel.textContent = `${sizeInput.value} x ${sizeInput.value}`;
-})
