@@ -27,11 +27,11 @@ function createSquare(squareSize)  {
 function createMatrix(squareSize) {
   board.textContent = '';
   const matrix = new Array(squareSize).fill(0).map(() => new Array(squareSize).fill(0));
-  for(let column = 0; column < matrix.length; column++) {
-    for(let row = 0; row < matrix[column].length; row++) {
+  for(let column of matrix) {
+    for(let row of column) {
       createSquare(squareSize);
     }
-  };
+  }
   const square = document.querySelectorAll('.square');
   setPaintEvent(square);
   removePaintEvent(square);
