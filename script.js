@@ -27,8 +27,8 @@ function createSquare(squareSize)  {
 function createMatrix(squareSize) {
   board.textContent = '';
   const matrix = new Array(squareSize).fill(0).map(() => new Array(squareSize).fill(0));
-  for(let column of matrix) {
-    for(let row of column) {
+  for(let row of matrix) {
+    for(let column of row) {
       createSquare(squareSize);
     }
   }
